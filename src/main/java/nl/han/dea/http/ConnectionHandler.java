@@ -123,7 +123,7 @@ public class ConnectionHandler {
                 .replace("{{HTTP_STATUS}}", status);
 
 
-        header = header.replace("{{CONTENT_LENGTH}}", Integer.toString(90));
+        header = header.replace("{{CONTENT_LENGTH}}", setContentLength(header, filename));
 
         System.out.println("-> Responded with the following HTTP-headers:");
         System.out.println(header);
@@ -135,7 +135,7 @@ public class ConnectionHandler {
         if (filename != null) {
             contentLength = Long.toString(getPath(filename).toFile().length());
         }
-        return header.replace("{{CONTENT_LENGTH}}", contentLength);
+        return contentLength;
     }
 
     private Path getPath(final String filename) {
